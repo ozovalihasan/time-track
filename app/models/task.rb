@@ -1,4 +1,8 @@
 class Task < ApplicationRecord
+  belongs_to :user
+
+  scope :descending_order, -> { order(created_at: :desc) }
+
   def self.to_csv
     attributes = %w[id comment time_type start_time end_time]
 
