@@ -57,6 +57,7 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'devise'
 gem 'haml'
 gem 'hirb'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
