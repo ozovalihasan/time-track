@@ -1,0 +1,5 @@
+<% if current_user %>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+        Sign out
+    <% end %>
+<% end %>

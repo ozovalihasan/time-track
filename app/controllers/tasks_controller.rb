@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tasks = Task.all
+    return @tasks = Task.all if current_user.admin?
   end
 
   def new

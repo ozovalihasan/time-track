@@ -1,5 +1,9 @@
-<% @tasks.each do |task| %>
-    <div>
-        <%= task.comment %>
-    </div>
+<% if current_user.admin? %>
+    <% @tasks.each do |task| %>
+        <div>
+            <%= task.comment %>
+        </div>
+    <% end %>
+<% else %>
+    <div>you are not authorized to access this page  </div>
 <% end %>
