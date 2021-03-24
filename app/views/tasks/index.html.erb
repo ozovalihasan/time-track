@@ -4,6 +4,7 @@
             <%= task.comment %>
         </div>
     <% end %>
+    <%= link_to 'Export CSV', tasks_path( format: :csv) %>
 <% else %>
     <div>you are not authorized to access this page  </div>
 <% end %>

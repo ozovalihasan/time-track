@@ -2,7 +2,15 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    return @tasks = Task.all if current_user.admin?
+    if current_user.admin?
+      @tasks = Task.all
+      respond_to do |format|
+        format.html
+        format.csv { send_data @tasks.to_csv, filename: "tasks-#{Date.today}.csv" }
+      end
+      @tasks
+
+    end
   end
 
   def new
