@@ -1,6 +1,5 @@
 AllCops:
   Exclude:
-    - "db/**/*"
     - "bin/*" 
     - "config/**/*"
     - "Guardfile"
@@ -15,11 +14,13 @@ Metrics/MethodLength:
   Include:
     - "app/controllers/*"
     - "app/models/*"
+    - "db/seeds.rb"
   Max: 20
 Metrics/AbcSize:
   Include:
     - "app/controllers/*"
     - "app/models/*"
+    - "db/seeds.rb"
   Max: 50
 Metrics/ClassLength:
   Max: 150
