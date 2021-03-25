@@ -5,9 +5,7 @@
     <%= f.text_field :comment, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :time_type %><br />
-    <%= f.select :time_type, ["Day", "Week", "Month"] %>
+    <%= f.select :time_type, ["Meeting", "Study", "Exercise"] %>
   </div>
 
   <div class="field">

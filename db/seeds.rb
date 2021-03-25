@@ -21,7 +21,7 @@ end
   offset = rand(User.count)
   User.offset(offset).first.tasks.create(
     comment: Faker::Lorem.sentence,
-    time_type: %w[Day Week Month].sample,
+    time_type: %w[Meeting Study Exercise].sample,
     start_time: Faker::Time.between(from: DateTime.now - 14, to: DateTime.now - 7),
     end_time: Faker::Time.between(from: DateTime.now - 7, to: DateTime.now)
   )
