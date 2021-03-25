@@ -13,6 +13,8 @@ class TasksController < ApplicationController
         format.csv { send_data @tasks.to_csv, filename: "tasks-#{Date.today}.csv" }
       end
       @tasks
+    else
+      redirect_to root_path
 
     end
   end
