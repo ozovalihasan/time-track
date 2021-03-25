@@ -12,4 +12,22 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+ .bigger_label {
+     font-size: 24px;
+ }
+
+.m-10 {
+    margin: 10px;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.b-s-1-g {
+    border: solid 1px gray
+}

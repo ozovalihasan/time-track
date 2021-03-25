@@ -1,0 +1,20 @@
+!!! 5
+%html{ :lang => "en" }
+  %head
+    %meta{ :charset => "utf-8" }
+
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+    %title 
+      Track Time
+
+    = stylesheet_link_tag "application"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' 
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tag
+    = csrf_meta_tags
+  %body.m-10
+    .notice
+      = notice
+      = alert
+    = render 'layouts/account'
+    = yield
