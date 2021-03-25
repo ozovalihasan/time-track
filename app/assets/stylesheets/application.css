@@ -15,3 +15,31 @@
  *= require foundation_and_overrides
 
  */
+
+ .bigger_label {
+     font-size: 24px;
+ }
+
+.d-flex {
+    display: flex;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.m-10 {
+    margin: 10px;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.b-s-1-g {
+    border: solid 1px gray
+}

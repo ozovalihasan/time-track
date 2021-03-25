@@ -1,20 +1,44 @@
-- @tasks.each do |task|
-  %div
-    = task.comment
-= link_to 'Export CSV', tasks_path( chosen_filter: @filter, format: :csv )
-= link_to 'Filter', tasks_path( @filter )
-= form_with url: '/tasks', method: 'get', local: true do |f|
-  .field
-    = f.label :time_type
-    %br/
-    = f.select :time_type, ["Meeting", "Study", "Exercise"], :include_blank => true
-  .field
+%table
+  %tr
+    %th
+      Comment
+    %th
+      Time Type
+    %th
+      Start Time
+    %th
+      End Time
+  - @tasks.each do |task|
+    %tr
+      %td
+        = task.comment
+      %td
+        = task.time_type
+      %td
+        = task.start_time
+      %td
+        = task.end_time
+
+= link_to 'Export CSV', tasks_path( chosen_filter: @filter, format: :csv ), class: 'button'
+
+= form_with url: '/tasks', method: 'get', local: true, class:'b-s-1-g m-10 p-10' do |f|
+  .m-10.p-10
     = f.collection_check_boxes :users_id, User.order(:id), :id, :email
-  .field
-    = f.label :start_time
-    = f.datetime_select :start_time, :ampm => true, :selected => DateTime.new(1970,1,1,0,0)
-  .field
-    = f.label :end_time
-    = f.datetime_select :end_time, :ampm => true, :minute_step => 15, :selected => DateTime.new(2100,1,1,0,0)
+  .w-50.m-10
+    .w-50
+      = f.label :time_type, class:'bigger_label'
+      %br/
+      = f.select :time_type, ["Meeting", "Study", "Exercise"], :include_blank => true
+
+  .d-flex
+    .m-10
+      = f.label :start_time, class:'bigger_label'
+      = f.datetime_select :start_time, :ampm => true, :selected => DateTime.new(1970,1,1,0,0)
+      
+    .m-10
+      = f.label :end_time, class:'bigger_label'
+      = f.datetime_select :end_time, :ampm => true, :minute_step => 15, :selected => DateTime.new(2100,1,1,0,0)
   .actions
-    = f.submit "Filter",name: 'filter'
+    = f.submit "Filter",name: 'filter', class: 'button m-10'
+
+= link_to 'Add a task', new_task_path, class: 'button secondary '
