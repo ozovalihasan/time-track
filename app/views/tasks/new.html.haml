@@ -3,15 +3,15 @@
     = f.label :comment, class: 'bigger_label'
     %br/
     = f.text_field :comment, autofocus: true, required: true
-  .w-50.m-10
-    .w-50
+  .grid-x
+    .cell.small-5.m-10
       = f.label :time_type, class: 'bigger_label'
       = f.select :time_type, ["Meeting", "Study", "Exercise"]
-  .d-flex
-    .m-10
+  .grid-x
+    .cell.small-5.m-10
       = f.label :start_time, class: 'bigger_label'
       = f.datetime_select :start_time, :ampm => true, :minute_step => 15
-    .m-10
+    .cell.small-5.m-10
       = f.label :end_time, class: 'bigger_label'
       = f.datetime_select :end_time, :ampm => true, :minute_step => 15
   .actions

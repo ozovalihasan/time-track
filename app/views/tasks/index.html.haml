@@ -22,20 +22,20 @@
 = link_to 'Export CSV', tasks_path( chosen_filter: @filter, format: :csv ), class: 'button'
 
 = form_with url: '/tasks', method: 'get', local: true, class:'b-s-1-g m-10 p-10' do |f|
-  .m-10.p-10
+  .p-10
     = f.collection_check_boxes :users_id, User.order(:id), :id, :email
-  .w-50.m-10
-    .w-50
+  .grid-x
+    .cell.small-5.m-10
       = f.label :time_type, class:'bigger_label'
       %br/
       = f.select :time_type, ["Meeting", "Study", "Exercise"], :include_blank => true
 
-  .d-flex
-    .m-10
+  .grid-x
+    .cell.small-5.m-10
       = f.label :start_time, class:'bigger_label'
       = f.datetime_select :start_time, :ampm => true, :selected => DateTime.new(1970,1,1,0,0)
       
-    .m-10
+    .cell.small-5.m-10
       = f.label :end_time, class:'bigger_label'
       = f.datetime_select :end_time, :ampm => true, :minute_step => 15, :selected => DateTime.new(2100,1,1,0,0)
   .actions
