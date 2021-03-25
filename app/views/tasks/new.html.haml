@@ -1,0 +1,16 @@
+= form_with model: @task do |f|
+  .field
+    = f.label :comment
+    %br/
+    = f.text_field :comment, autofocus: true
+  = f.select :time_type, ["Meeting", "Study", "Exercise"]
+  .field
+    = f.label :start_time
+    = f.datetime_select :start_time, :ampm => true, :minute_step => 15
+  .field
+    = f.label :end_time
+    = f.datetime_select :end_time, :ampm => true, :minute_step => 15
+  .actions
+    = f.submit "Add Task"
+- if current_user.admin?
+  = link_to 'All tasks', tasks_path
