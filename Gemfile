@@ -57,7 +57,9 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'autoprefixer-rails'
 gem 'devise'
+gem 'foundation-rails'
 gem 'haml'
 gem 'hirb'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
