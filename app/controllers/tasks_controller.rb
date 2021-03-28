@@ -8,6 +8,7 @@ class TasksController < ApplicationController
         filter = filter_params
         @tasks = filter_tasks(@tasks, filter)
       end
+      @tasks.nil? ? @tasks = [] : @tasks
     else
       redirect_to root_path
     end
