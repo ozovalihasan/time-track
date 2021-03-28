@@ -4,10 +4,10 @@ class TasksController < ApplicationController
   def index
     if current_user.admin?
       @tasks = Task.all
-      @filter = nil
-      @filter = filter_params if params.keys.include? 'filter'
-      @tasks = filter_tasks(@tasks, @filter) if @filter
-      @tasks
+      if params.keys.include? 'filter'
+        filter = filter_params
+        @tasks = filter_tasks(@tasks, filter)
+      end
     else
       redirect_to root_path
     end
