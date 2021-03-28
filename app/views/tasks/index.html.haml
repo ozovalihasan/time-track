@@ -37,6 +37,7 @@
       = f.label :start_time, class:'bigger_label'
       = f.datetime_select :start_time, 
         ampm: true, 
+        minute_step: 15,
         selected: DateTime.new(Date.today.year - 5,1,1,0,0), 
         start_year: Date.today.year - 5, 
         end_year: Date.today.year + 5 

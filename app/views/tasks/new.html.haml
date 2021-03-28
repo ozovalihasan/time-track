@@ -10,10 +10,20 @@
   .grid-x
     .cell.small-5.m-10
       = f.label :start_time, class: 'bigger_label'
-      = f.datetime_select :start_time, :ampm => true, :minute_step => 15
+      = f.datetime_select :start_time,
+        ampm: true, 
+        minute_step: 15,
+        selected: DateTime.now, 
+        start_year: Date.today.year - 5, 
+        end_year: Date.today.year + 5 
     .cell.small-5.m-10
       = f.label :end_time, class: 'bigger_label'
-      = f.datetime_select :end_time, :ampm => true, :minute_step => 15
+      = f.datetime_select :end_time,
+        ampm: true,
+        minute_step: 15,
+        selected: DateTime.now,
+        start_year: Date.today.year - 5,
+        end_year: Date.today.year + 5 
   .actions
     = f.submit "Add Task", class: 'button m-10'
 - if current_user.admin?
