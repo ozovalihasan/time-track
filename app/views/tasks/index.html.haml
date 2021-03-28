@@ -21,12 +21,12 @@
 
 = form_with url: '/tasks', method: 'get', local: true, class:'b-s-1-g m-10 p-10' do |f|
   .p-10
-    = f.collection_check_boxes :users_id, User.order(:id), :id, :email
+    = f.collection_check_boxes :users_id,  User.all.order(:id), :id, :email
   .grid-x
     .cell.small-5.m-10
       = f.label :time_type, class:'bigger_label'
       %br/
-      = f.select :time_type, ["Meeting", "Study", "Exercise"], :include_blank => true
+      = f.select :time_type, ["Meeting", "Study", "Exercise"], include_blank: true
 
   .grid-x
     .cell.small-5.m-10
