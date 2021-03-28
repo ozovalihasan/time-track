@@ -92,12 +92,12 @@ RSpec.configure do |config|
   end
 
   # config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end
 
 # Datacleaner doesn't delete  everything how I expected
 # Define customized method to delete all records.
 def delete_all_tables
-  Following.destroy_all
   User.destroy_all
-  Whiistle.destroy_all
+  Task.destroy_all
 end
