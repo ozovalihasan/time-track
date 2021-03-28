@@ -4,10 +4,7 @@ class TasksController < ApplicationController
   def index
     if current_user.admin?
       @tasks = Task.all
-      if params.keys.include? 'filter'
-        filter = filter_params
-        @tasks = filter_tasks(@tasks, filter)
-      end
+      @tasks = filter_tasks(@tasks, filter_params) if params['filter']
       @tasks.nil? && @tasks = []
     else
       redirect_to root_path
@@ -42,10 +39,11 @@ class TasksController < ApplicationController
 
   def filter_tasks(tasks, filter)
     filter = filter.to_h
-    tasks = tasks.where(['time_type == ?', filter['time_type']]) unless filter['time_type'] == ''
-    tasks = tasks.all.where(['start_time > ?', hash_to_datetime(filter, 'start_time')])
-    tasks = tasks.all.where(['end_time < ?', hash_to_datetime(filter, 'end_time')])
-    tasks.where(user_id: filter['users_id']) if filter['users_id'].size > 1
+    tasks = tasks.filter_by_start_time hash_to_datetime(filter, 'start_time')
+    tasks = tasks.filter_by_end_time hash_to_datetime(filter, 'end_time')
+    tasks = tasks.filter_by_time_type(filter['time_type']) unless filter['time_type'] == ''
+    tasks = tasks.where(user_id: filter['users_id']) if filter['users_id'].size > 1
+    tasks
   end
 
   def hash_to_datetime(hash, para)
@@ -54,10 +52,10 @@ class TasksController < ApplicationController
       result << hash["#{para}(#{item}i)"].to_i
     end
 
-    integer_to_datetime(result)
+    arrays_to_datetime(result)
   end
 
-  def integer_to_datetime(arr)
+  def arrays_to_datetime(arr)
     DateTime.new(*arr)
   end
 end
