@@ -36,20 +36,18 @@ class TasksController < ApplicationController
 
   def filter_tasks(tasks, filter)
     filter = filter.to_h
-    tasks = tasks.filter_by_start_time hash_to_datetime(filter, 'start_time')
-    tasks = tasks.filter_by_end_time hash_to_datetime(filter, 'end_time')
     tasks = tasks.filter_by_time_type(filter['time_type']) unless filter['time_type'] == ''
-    tasks = tasks.where(user_id: filter['users_id']) if filter['users_id'].size > 1
-    tasks
+    tasks = tasks.filter_by_users_id(filter['users_id']) if filter['users_id'].size > 1
+
+    start_time = hash_to_datetime(filter, /start_time/)
+    end_time = hash_to_datetime(filter, /end_time/)
+    tasks.filter_by_start_time(start_time).filter_by_end_time(end_time)
   end
 
   def hash_to_datetime(hash, para)
-    result = []
-    (1.upto 5).each do |item|
-      result << hash["#{para}(#{item}i)"].to_i
-    end
-
-    arrays_to_datetime(result)
+    necessary_keys = hash.keys.grep(para).sort
+    date_time_array = necessary_keys.map { |key| hash[key].to_i }
+    arrays_to_datetime(date_time_array)
   end
 
   def arrays_to_datetime(arr)
