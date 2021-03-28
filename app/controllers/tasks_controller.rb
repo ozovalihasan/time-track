@@ -40,10 +40,6 @@ class TasksController < ApplicationController
     params.permit(:time_type, :start_time, :end_time, :filter, users_id: [])
   end
 
-  def chosen_filter_params
-    params.require(:chosen_filter).permit(:time_type, :start_time, :end_time, :filter, users_id: [])
-  end
-
   def filter_tasks(tasks, filter)
     filter = filter.to_h
     tasks = tasks.where(['time_type == ?', filter['time_type']]) unless filter['time_type'] == ''
