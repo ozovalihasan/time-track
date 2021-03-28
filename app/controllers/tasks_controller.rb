@@ -6,16 +6,10 @@ class TasksController < ApplicationController
       @tasks = Task.all
       @filter = nil
       @filter = filter_params if params.keys.include? 'filter'
-      @filter = chosen_filter_params if params.keys.include? 'chosen_filter'
       @tasks = filter_tasks(@tasks, @filter) if @filter
-      respond_to do |format|
-        format.html
-        format.csv { send_data @tasks.to_csv, filename: "tasks-#{Date.today}.csv" }
-      end
       @tasks
     else
       redirect_to root_path
-
     end
   end
 

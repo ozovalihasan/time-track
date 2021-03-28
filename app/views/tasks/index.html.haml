@@ -19,8 +19,6 @@
       %td
         = task.end_time
 
-= link_to 'Export CSV', tasks_path( chosen_filter: @filter, format: :csv ), class: 'button'
-
 = form_with url: '/tasks', method: 'get', local: true, class:'b-s-1-g m-10 p-10' do |f|
   .p-10
     = f.collection_check_boxes :users_id, User.order(:id), :id, :email
