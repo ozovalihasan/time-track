@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :admin_user, only: :index
 
   def index
-    @tasks = Task.all
+    @tasks = Task.all.includes(:user)
     @tasks = filter_tasks(@tasks, filter_params) if params['filter']
     @tasks.nil? && @tasks = []
   end

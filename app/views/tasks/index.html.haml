@@ -1,6 +1,8 @@
 %table
   %tr
     %th
+      User
+    %th
       Comment
     %th
       Time Type
@@ -10,6 +12,8 @@
       End Time
   - @tasks.each do |task|
     %tr
+      %td
+        = task.user.email
       %td
         = task.comment
       %td
