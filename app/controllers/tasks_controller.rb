@@ -1,14 +1,11 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :admin_user, only: :index
 
   def index
-    if current_user.admin?
-      @tasks = Task.all
-      @tasks = filter_tasks(@tasks, filter_params) if params['filter']
-      @tasks.nil? && @tasks = []
-    else
-      redirect_to root_path
-    end
+    @tasks = Task.all
+    @tasks = filter_tasks(@tasks, filter_params) if params['filter']
+    @tasks.nil? && @tasks = []
   end
 
   def new
@@ -57,5 +54,9 @@ class TasksController < ApplicationController
 
   def arrays_to_datetime(arr)
     DateTime.new(*arr)
+  end
+
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
   end
 end
