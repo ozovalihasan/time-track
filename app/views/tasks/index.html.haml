@@ -31,12 +31,21 @@
   .grid-x
     .cell.small-5.m-10
       = f.label :start_time, class:'bigger_label'
-      = f.datetime_select :start_time, :ampm => true, :selected => DateTime.new(1970,1,1,0,0)
+      = f.datetime_select :start_time, 
+        ampm: true, 
+        selected: DateTime.new(Date.today.year - 5,1,1,0,0), 
+        start_year: Date.today.year - 5, 
+        end_year: Date.today.year + 5 
       
     .cell.small-5.m-10
       = f.label :end_time, class:'bigger_label'
-      = f.datetime_select :end_time, :ampm => true, :minute_step => 15, :selected => DateTime.new(2100,1,1,0,0)
+      = f.datetime_select :end_time, 
+        ampm: true,
+        minute_step: 15,
+        selected: Date.today.year + 5,
+        start_year: Date.today.year - 5,
+        end_year: Date.today.year + 5 
   .actions
-    = f.submit "Filter",name: 'filter', class: 'button m-10'
+    = f.submit "Filter", name: 'filter', class: 'button m-10'
 
 = link_to 'Add a task', new_task_path, class: 'button secondary '
